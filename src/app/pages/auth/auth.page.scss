@@ -1,0 +1,82 @@
+form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .page-image {
+    width: 180px;
+    height: 180px;
+    font-size: 8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-form {
+    width: 100%;
+    max-width: 500px;
+
+    .form-inputs {
+      width: 100%;
+      max-width: 500px;
+      .login-input {
+        ::-webkit-input-placeholder {
+          text-align: center;
+        }
+
+        :-moz-placeholder {
+          /* Firefox 18- */
+          text-align: center;
+        }
+
+        ::-moz-placeholder {
+          /* Firefox 19+ */
+          text-align: center;
+        }
+
+        :-ms-input-placeholder {
+          text-align: center;
+        }
+      }
+    }
+
+    .error-container {
+      margin: 8px 16px;
+      padding: 5px;
+      color: red;
+
+      .error-message::before {
+        content: '* ';
+      }
+    }
+
+    .submit-button {
+      width: 100%;
+      margin: 8px 16px;
+    }
+
+    .page-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 500px;
+      span {
+        text-transform: none !important;
+      }
+    }
+  }
+}

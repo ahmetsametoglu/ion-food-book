@@ -1,0 +1,111 @@
+<ion-content padding>
+  <div class="login">
+    <!-- page icon -->
+    <div class="page-image">
+      <ion-icon
+        [name]=" formMode==='Register' ? 'create' : (formMode==='Login' ? 'log-in' : 'send')"
+        [color]=" formMode==='Register' ? 'danger' : (formMode==='Login' ? 'primary' : 'medium')"
+      ></ion-icon>
+    </div>
+
+    <!-- form -->
+    <div class="page-form">
+      <form [formGroup]="myForm" (ngSubmit)="submitForm(myForm.value,myForm.valid)">
+        <div class="form-inputs">
+          <!-- email input -->
+          <ion-item>
+            <ion-icon name="mail" slot="start"></ion-icon>
+            <ion-input
+              class="login-input"
+              type="email"
+              placeholder="e-mail"
+              formControlName="email"
+            ></ion-input>
+          </ion-item>
+          <app-input-validation-error
+            [inputFormControl]="myForm.get('email')"
+            [validationMessages]="validationMessages.email"
+          ></app-input-validation-error>
+
+          <!-- password input -->
+          <div *ngIf="formMode!=='Send Password'">
+            <ion-item>
+              <ion-icon name="key" slot="start"></ion-icon>
+              <ion-input
+                class="login-input"
+                type="password"
+                placeholder="password"
+                formControlName="password"
+              ></ion-input>
+            </ion-item>
+
+            <app-input-validation-error
+              [inputFormControl]="myForm.get('password')"
+              [validationMessages]="validationMessages.password"
+            ></app-input-validation-error>
+          </div>
+
+          <!-- confirm password input -->
+          <div *ngIf="formMode==='Register'">
+            <ion-item>
+              <ion-icon name="key" slot="start"></ion-icon>
+              <ion-input
+                class="login-input"
+                type="password"
+                placeholder="confirm password"
+                formControlName="confirmPassword"
+              ></ion-input>
+            </ion-item>
+            <app-input-validation-error
+              [inputFormControl]="myForm.get('confirmPassword')"
+              [validationMessages]="validationMessages.confirmPassword"
+            ></app-input-validation-error>
+          </div>
+        </div>
+
+        <!-- submit button -->
+        <ion-button
+          class="submit-button"
+          type="submit"
+          expand="full"
+          [color]=" formMode==='Register' ? 'danger' : (formMode==='Login' ? 'primary' : 'medium')"
+          [disabled]="!myForm.valid"
+        >
+          {{formMode}}
+        </ion-button>
+
+        <!-- form mode buttons -->
+        <div class="page-buttons">
+          <ion-button
+            style="display: block;"
+            type="button"
+            fill="clear"
+            color="primary"
+            (click)="changeFormMode('Login')"
+            *ngIf="formMode!=='Login'"
+          >
+            <span>login</span>
+          </ion-button>
+          <ion-button
+            type="button"
+            fill="clear"
+            color="danger"
+            (click)="changeFormMode('Register')"
+            *ngIf="formMode!=='Register'"
+          >
+            <span>register</span>
+          </ion-button>
+          <ion-button
+            type="button"
+            fill="clear"
+            color="medium"
+            (click)="changeFormMode('Send Password')"
+            *ngIf="formMode!=='Send Password'"
+          >
+            <span>forget password</span>
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
