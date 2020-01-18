@@ -1,0 +1,10 @@
+<div class="error-container" *ngIf="!!textInput && textInput.errors">
+  <ng-container *ngFor="let validation of validationMessages">
+    <div
+      class="error-message"
+      *ngIf="textInput.hasError(validation.type) && (textInput.dirty || textInput.touched)"
+    >
+      {{ validation.message }}
+    </div>
+  </ng-container>
+</div>

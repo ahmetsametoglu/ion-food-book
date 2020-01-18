@@ -1,0 +1,9 @@
+.error-container {
+  margin: 8px 16px;
+  padding: 5px;
+  color: red;
+
+  .error-message::before {
+    content: '* ';
+  }
+}
