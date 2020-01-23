@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -37,6 +38,7 @@ import { appReducers } from './store/app.reducer';
     AngularFireAuthModule,
     AngularFireStorageModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
 
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot(EFFECTS),
