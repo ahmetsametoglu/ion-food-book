@@ -18,11 +18,11 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EFFECTS } from './store/auth/effects';
+import { EFFECTS } from './store/effects';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './store/app.reducer';
+import { NgrxRouterStoreModule } from './store/router/ngrx-router.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,8 +42,8 @@ import { appReducers } from './store/app.reducer';
 
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot(EFFECTS),
-    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    NgrxRouterStoreModule,
     AppRoutingModule,
   ],
   providers: [
