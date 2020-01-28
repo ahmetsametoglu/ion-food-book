@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { BarcodeScannerComponent } from '../components/barcode-scanner/barcode-scanner.component';
+import { Store } from '@ngrx/store';
+import { IAppState } from '../store/app.state';
+import { Logout } from '../store/auth/auth.actions';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +10,9 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  constructor(private store: Store<IAppState>) {}
 
-  constructor() {}
-
+  logout() {
+    this.store.dispatch(new Logout());
+  }
 }
