@@ -1,5 +1,10 @@
+import { LoginWithGoogle } from './../../store/auth/auth.actions';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store/app.state';
+import { Register, Login } from 'src/app/store/auth/auth.actions';
+import { Router } from '@angular/router';
 
 type FormMode = 'Login' | 'Register' | 'Send Password';
 
@@ -30,7 +35,7 @@ export class AuthPage implements OnInit {
     ],
   };
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(private store: Store<IAppState>, private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.myForm = new FormGroup({});
@@ -47,6 +52,23 @@ export class AuthPage implements OnInit {
     if (!isValid) {
       return;
     }
+
+    switch (this.formMode) {
+      case 'Register':
+        this.store.dispatch(new Register({ email: modal.email, password: modal.password }));
+        break;
+
+      case 'Login':
+        this.store.dispatch(new Login({ email: modal.email, password: modal.password }));
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  loginWithGoogle() {
+    this.store.dispatch(new LoginWithGoogle());
   }
 
   changeFormMode(mode: FormMode) {

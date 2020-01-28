@@ -1,4 +1,4 @@
-<ion-content padding>
+<ion-content class="ion-padding">
   <div class="login">
     <!-- page icon -->
     <div class="page-image">
@@ -7,6 +7,12 @@
         [color]=" formMode==='Register' ? 'danger' : (formMode==='Login' ? 'primary' : 'medium')"
       ></ion-icon>
     </div>
+
+    <!-- google login -->
+    <ion-button (click)="loginWithGoogle()">
+      <ion-icon slot="start" name="logo-google"></ion-icon>
+      login with google
+    </ion-button>
 
     <!-- form -->
     <div class="page-form">
